@@ -12,14 +12,11 @@ const {
   taskIdValidation,
 } = require("../middleware/task.validation");
 
-// IMPORTANT:
-// Replace this import with the actual auth middleware
-// you already use in your authentication project.
-const authenticate = require("../middleware/auth.middleware");
+const { protect } = require("../middleware/auth.middleware");
 
 router.post(
   "/",
-  authenticate,
+  protect,
   createTaskValidation,
   validate,
   taskController.createTask
@@ -27,13 +24,13 @@ router.post(
 
 router.get(
   "/",
-  authenticate,
+  protect,
   taskController.getTasks
 );
 
 router.get(
   "/:id",
-  authenticate,
+  protect,
   taskIdValidation,
   validate,
   taskController.getTaskById
@@ -41,7 +38,7 @@ router.get(
 
 router.patch(
   "/:id",
-  authenticate,
+  protect,
   updateTaskValidation,
   validate,
   taskController.updateTask
@@ -49,7 +46,7 @@ router.patch(
 
 router.delete(
   "/:id",
-  authenticate,
+  protect,
   taskIdValidation,
   validate,
   taskController.deleteTask

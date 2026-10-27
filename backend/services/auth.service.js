@@ -266,8 +266,6 @@ const verifyLoginOTP = async (challengeId, otp) => {
 
   const submittedOtpHash = hashOTP(otp);
 
-  console.log("Submitted OTP Hash:", submittedOtpHash, "Stored OTP Hash:", verification.otpHash);
-
    if (submittedOtpHash !== verification.otpHash) {
     const updated = await EmailVerification.findOneAndUpdate(
       {
